@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="fashion_menu"
+              name="Menu"
+              sequence="3" parent="fashion_store.fashion_root"/>
+    <record id="view_order_form" model="ir.ui.view">
+                    <field name="name">fashion.order.form</field>
+                    <field name="model">fashion.order</field>
+                    <field name="arch" type="xml">
+                        <form string="Order Date">
+                            <field name="date"/>
+                        </form>
+                    </field>
+    </record>
+    <record id="view_order_list" model="ir.ui.view">
+                    <field name="name">fashion.order.list</field>
+                    <field name="model">fashion.order</field>
+                    <field name="arch" type="xml">
+                        <tree string="Order Date">
+                            <field name="date" required="1"/>
+                        </tree>
+                    </field>
+    </record>
+    <record id="action_order" model="ir.actions.act_window">
+        <field name="name">Order</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">fashion.order</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+   <record id="action_view_order_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="fashion_store.view_order_list"/>
+        <field name="act_window_id" ref="action_order"/>
+    </record>
+    <record id="action_view_order_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="fashion_store.view_order_form"/>
+        <field name="act_window_id" ref="action_order"/>
+    </record>
+    <menuitem id="menu_fashion"
+              name="Order Date"
+              parent="fashion_store.fashion_menu"
+              action="fashion_store.action_order"/>
+
+</odoo>
